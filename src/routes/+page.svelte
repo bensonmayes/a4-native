@@ -44,23 +44,29 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<h1>todoapp!</h1>
+<header class="header">
+<h1>Welcome to Benson's to do app!</h1>
+</header>
 
 <form on:submit|preventDefault={addToArray}>
 	<input type="text" bind:value={todoItem}>
 	<button type="submit">Add</button>
 </form>
 
+<div>
 <ul>
 	{#each $todoList as item, index}
 	<li>
-		<input type="checkbox" bind:checked={item.done}>
+		<input type="checkbox" bind:checked={item.done} on:change={updateList}>
 		<span class:done={item.done} >{item.text}</span>
 		<span on:click={() => removeThis(index)}
 		class="remove" roll="button" tabindex="0">&times;</span>
 	</li>
 	{/each}
 </ul>
+</div>
+
+
 
 <style>
 	ul {
@@ -76,5 +82,9 @@
 	.remove {
 		color: darkred;
 		cursor: pointer;
+	}
+	div {
+		width: 20%;
+		margin: 0 auto;
 	}
 </style>
