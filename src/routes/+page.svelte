@@ -1,6 +1,7 @@
 <script>
 	import '../style.css'
 	import { writable } from 'svelte/store';
+	import snd from '$lib/images/click.mp3';
 	let todoItem= '';
 	let storedList;
 	let todoList = writable([]);
@@ -37,6 +38,10 @@
 	function clearDone (){
 
 	}
+	function clicksound () {
+		var audio = new Audio (snd)
+		audio.play();
+	}
 </script>
 
 <svelte:head>
@@ -50,7 +55,7 @@
 
 <form on:submit|preventDefault={addToArray}>
 	<input type="text" bind:value={todoItem}>
-	<button type="submit">Add</button>
+	<button type="submit" on:click={clicksound}>Add</button>
 </form>
 
 <div>
