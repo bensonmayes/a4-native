@@ -1,10 +1,15 @@
 body {
-     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: "Merriweather", serif;
      text-align: center;
      font-size: 2rem;
      background-color: #ffffff;
      margin-top: 10%;
      background-image: url(palm.webp);
+}
+.merriweather-bold {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: normal;
 }
 ul {
      margin: 0;
@@ -17,14 +22,21 @@ padding: 12px 8px;
 background: lightgray;
 font-size: 2rem;
 align-content: center;
+border-radius: 20px;
 
 }
 ul li:hover {
      background: lightpink;
    }
    button {
-     font-size: 1.2rem;
-     padding: 8px 4px;
+     font-size: 1.1rem;
+     padding: 16px 14px;
+     border-radius: 20px;
+     border-width: 4px;
+     border-color: lightpink;
+   }
+   #button:active {
+    font-size: 10px;
    }
    .header {
      background-color: lightpink;
@@ -45,5 +57,8 @@ ul li:hover {
      text-align: center;
    } 
    input[type='text'] {
-     padding: 8px 4px;
+     padding: 16px 14px;
+     border-radius: 20px;
+     border-width: 4px;
+     border-color: lightpink;
    }
