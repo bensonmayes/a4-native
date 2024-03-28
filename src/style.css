@@ -4,7 +4,7 @@ body {
      font-size: 2rem;
      background-color: #ffffff;
      margin-top: 10%;
-     background-image: url(palm.webp);
+     background-image: url($lib/images/palm.webp);
 }
 .merriweather-bold {
   font-family: "Merriweather", serif;
