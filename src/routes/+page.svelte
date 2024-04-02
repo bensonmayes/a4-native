@@ -70,7 +70,6 @@
 	margin-bottom: 10px;
 	width: 300px;
 	text-align: right;
-	background-color: #444444;
 }
 	
 .buttons {
