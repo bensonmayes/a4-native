@@ -92,7 +92,7 @@ button:hover{
 }
 .operator{
 border: 0px solid #A46D19;
-background: #F90;
+background: greenyellow;
 }
 .operator:hover{
 	background: #FFD700;
