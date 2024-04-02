@@ -4,5 +4,5 @@ body {
      font-size: 2rem;
      background-color: #ffffff;
      margin-top: 10%;
-     background-image: url($lib/images/palm.webp);
+    background-color: gray; 
 }
