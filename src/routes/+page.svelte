@@ -1,95 +1,115 @@
 <script>
-	import '../style.css'
-	import { writable } from 'svelte/store';
-	import snd from '$lib/images/click.mp3';
-	let todoItem= '';
-	let storedList;
-	let todoList = writable([]);
+  let display_number = "";
+  let operand;
+  let operator;
+  let result;
+	let operators = ["+", "-", "*", "/"];
+  const select = (num) => () => (display_number += num);
 
-	if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
-		storedList = localStorage.getItem('storedList');
-		if(storedList) {
-			$todoList = (JSON.parse(storedList));
-		}
-	}
-	
-	function updateList() {
-		return storedList = localStorage.setItem('storedList', JSON.stringify($todoList));
-	}
-	
-	$: isDone = $todoList.filter(item => item.done);
-	function addToArray() {
-		if (todoItem =='') {
-			return;
-		}
-		$todoList = [...$todoList, {
-			text: todoItem,
-			done: false
-		}];
-		//console.log(todoList);
-		updateList();
-		todoItem = '';
-	}
-	function removeThis(index) {
-		$todoList.splice(index,1);
-		$todoList = $todoList;
-		updateList();
-	}
-	function clearDone (){
+  function operation(sign) {
+    operand = Number(display_number);
+		console.log(operand)
+    operator = sign;
+    display_number = "";
+  }
 
-	}
-	function clicksound () {
-		var audio = new Audio (snd)
-		audio.play();
-	}
+  function equals() {
+    display_number = Number(display_number);
+    if (operator === "+") {
+      result = operand + display_number;
+    } else if (operator === "-") {
+      result = operand - display_number;
+    } else if (operator === "*") {
+      result = operand * display_number;
+    } else if (operator === "/") {
+      result = operand / display_number;
+    }
+		display_number = result.toString()
+  }
+
+  const clear = () => (display_number = "");
 </script>
 
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
-
-<header class="header">
-<h1>Welcome to Benson's to do app!</h1>
-</header>
-
-<form on:submit|preventDefault={addToArray}>
-	<input type="text" bind:value={todoItem}>
-	<button type="submit" on:click={clicksound}>Add</button>
-</form>
-
-<div>
-<ul>
-	{#each $todoList as item, index}
-	<li>
-		<input type="checkbox" bind:checked={item.done} on:change={updateList}>
-		<span class:done={item.done} >{item.text}</span>
-		<span on:click={() => removeThis(index)}
-		class="remove" roll="button" tabindex="0">&times;</span>
-	</li>
-	{/each}
-</ul>
+<div class="calculator">
+	<div class="display">{display_number.length < 23? display_number: display_number.substring(0,23)}</div>
+	<div class="buttons">
+		<button on:click={select(7)}>7</button>
+		<button on:click={select(8)}>8</button>
+		<button on:click={select(9)}>9</button>
+		<button on:click={() => operation(operators[0])} class="operator" >+</button>
+		<button on:click={select(4)}>4</button>
+		<button on:click={select(5)}>5</button>
+		<button on:click={select(6)}>6</button>
+		<button on:click={() => operation(operators[1])} class="operator" >-</button>
+		<button on:click={select(1)}>1</button>
+		<button on:click={select(2)}>2</button>
+		<button on:click={select(3)}>3</button>
+		<button on:click={() => operation(operators[2])} class="operator">*</button>
+		<button on:click={select(0)}>0</button>
+		<button on:click={select(".")}>.</button>
+		<button on:click={clear} class="clear">C</button>
+		<button on:click={() => operation(operators[3])} class="operator">/</button>
+		<button on:click={equals} class="equals" >=</button>
+	</div>
 </div>
 
-
-
 <style>
-	ul {
-		list-style: none;
-	}
-	li {
-		font-size: 1.3rem;
-	}
-	.done {
-		color: #ccc;
-		text-decoration: line-through;
-	}
-	.remove {
-		color: darkred;
-		cursor: pointer;
-	}
-	div {
-		width: 20%;
-		margin: 0 auto;
-	}
+.calculator {
+	display: inline-block;
+	border: 1px solid #ccc;
+	padding: 10px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.display {
+	font-size: 24px;
+	border: 1px solid #ccc;
+	height: 24px;
+	padding: 10px;
+	margin-bottom: 10px;
+	width: 300px;
+	text-align: right;
+}
+	
+.buttons {
+	display: grid;
+	grid-template-columns: repeat(4, 75px);
+	gap: 5px;
+}
+
+button {
+	padding: 10px;
+	font-size: 18px;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	font-family: Arial, sans-serif;
+	text-align: center;
+}
+button:hover{
+	background: #444444;
+}
+.operator{
+border: 0px solid #A46D19;
+background: #F90;
+}
+.operator:hover{
+	background: #FFD700;
+}
+.clear{
+border: 0px solid #000;
+background: red;
+}
+.clear:hover {
+	background: #FFC0CB ; /* Change background color on hover */
+}
+.equals{
+border: 0px solid #000;
+background: #245BE9;
+width: 320px
+}
+.equals:hover {
+	background: #ADD8E6; /* Change background color on hover */
+}
 </style>
