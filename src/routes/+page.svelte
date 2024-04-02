@@ -60,6 +60,7 @@
 	padding: 10px;
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	text-align: center;
 }
 
 .display {
@@ -70,7 +71,6 @@
 	margin-bottom: 10px;
 	width: 300px;
 	text-align: right;
-	align-items: center;
 }
 	
 .buttons {
@@ -107,7 +107,7 @@ background: red;
 }
 .equals{
 border: 0px solid #000;
-background: #245BE9;
+background: lightsalmon;
 width: 320px
 }
 .equals:hover {
