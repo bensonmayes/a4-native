@@ -1,4 +1,5 @@
 <script>
+  import '../style.css';
   let display_number = "";
   let operand;
   let operator;

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">a4-native</string>
+    <string name="title_activity_main">a4-native</string>
+    <string name="package_name">com.imdprogram.afour</string>
+    <string name="custom_url_scheme">com.imdprogram.afour</string>
+</resources>

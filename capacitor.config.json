@@ -1,0 +1,8 @@
+{
+  "appId": "com.imdprogram.afour",
+  "appName": "a4-native",
+  "webDir": "build",
+  "server": {
+    "androidScheme": "https"
+  }
+}
