@@ -1,3 +1,3 @@
-# A3 to do app
+# A4 Calculator
 
-This is my a3 to do app
+This is my Calculator app.
